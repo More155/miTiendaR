@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  padding-top: 60px; 
+  background-color: #F2D4C9;
+}
+
+h3{
+  color: #534945;
+}
+
+button{
+  background-color: #E5C9BE;
+  border-radius: 10px;
+}
