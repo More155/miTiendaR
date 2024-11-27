@@ -1,44 +1,36 @@
-import React, { useState } from 'react';
-import Button from '../../Button';
+import { useEffect } from "react";
+import { useState } from "react";
+import { useParams } from "react-router-dom"; 
+import { products as allProducts } from "../../../../data/products";
+import ItemList from "./ItemList";
+import Cards from "../../common/Cards";
 
-const productos = [
-  { categoria: "Paletas", nombre: "Paleta iluminadora" },
-  { categoria: "Paletas", nombre: "Paleta full color" },
-  { categoria: "Otros", nombre: "Pestañas postizas" },
-  { categoria: "Otros", nombre: "Brochas" },
-  
-];
+const ItemListContainer = () => {
+  const [myProducts, setMyProducts] = useState([]); 
+  const { name } = useParams();  
 
-export const ItemListContainer = ({ greeting }) => {
-  const [products, setProducts] = useState(productos);
+  useEffect(() => {
+    const filteredProducts = name
+      ? allProducts.filter((product) => product.category === name)
+      : allProducts;
 
-  const showPaletas = () => {
-    const res = productos.filter(e => e.categoria === "Paletas");
-    setProducts(res);
-  };
-
-  const showOtros = () => {
-    const res = productos.filter(e => e.categoria === "Otros");
-    setProducts(res);
-  };
-
-  const showAll = () => {
-    setProducts(productos);
-  };
+    setMyProducts(filteredProducts);  
+  }, [name]);
 
   return (
     <div>
-      <h2>{greeting}</h2>
-      <button onClick={showAll}>All</button>
-      <button onClick={showPaletas}>Paletas</button>
-      <button onClick={showOtros}>Otros</button>
-
-      {products.map((product, index) => (
-        <div key={index}>
-          <h3>{product.nombre}</h3>
-        </div>
-      ))}
+      <h2>{name ? `Productos de la categoría: ${name}` : "Todos los productos"}</h2>
+      <div className="product-list">
+        {myProducts.length > 0 ? (
+          myProducts.map((product) => (
+            <Cards key={product.id} product={product} />  
+          ))
+        ) : (
+          <p>Cargando productos...</p> 
+        )}
+      </div>
     </div>
   );
 };
 
+export default ItemListContainer;

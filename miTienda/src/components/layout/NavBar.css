@@ -11,8 +11,8 @@
     z-index: 100;
 }
 
-.Header p{
-    font-size: 32px;
+.header p{
+    font-size: 60px; 
     color: aliceblue;
     font-weight: 700;
 }
