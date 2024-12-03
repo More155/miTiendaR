@@ -7,6 +7,7 @@ const ItemList = ({ myProducts }) => {
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "center",
+        alignItems: "center",
       }}
     >
       {myProducts.map((product) => ( 

@@ -18,6 +18,7 @@ const ItemDetail = () => {
     <div>
       <h2>{product.title}</h2>
       <img style={{width:"300px", heigh:"300px"}} src={product.img} alt="" />
+      <h3>{product.description}</h3>
       <Counter product={product} />
     </div>
   );

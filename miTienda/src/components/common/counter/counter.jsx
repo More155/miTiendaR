@@ -3,7 +3,7 @@ import { CartContext } from "../../../context/CartContext";
 
 const btnStyles = {
   padding: "10px 40px",
-  backgroundColor: "pink",
+  backgroundColor: "#A6756A",
   fontSize: "1.5rem",
   color: "white",
   border: "none",
@@ -15,6 +15,7 @@ const divStyles = {
   justifyContent: "center",
   gap: "20px",
 };
+
 const Counter = ({ product }) => {
   const { addToCart } = useContext(CartContext);
   const [count, setCount] = useState(1);

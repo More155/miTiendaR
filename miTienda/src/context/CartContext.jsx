@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 export const CartContext = createContext();
 
 export const CartContextProvider = ({ children }) => {
-  const [cart, setCart] = useState([]); // {3} {5} {4} --> 12
+  const [cart, setCart] = useState([]); 
 
   const addToCart = (product) => {
     setCart([...cart, product]);

@@ -2,19 +2,14 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100%; 
     padding: 20px 10%;
     background: #A6756A;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
-}
-
-.header p{
-    font-size: 60px; 
-    color: aliceblue;
-    font-weight: 700;
+    font-size: 25px;
 }
 
 .navbar {
@@ -29,6 +24,7 @@
     color: aliceblue;
     font-weight: 500;
     margin-left: 40px;
+    font-size: 20px;
 }
 
 .navbar a::before{

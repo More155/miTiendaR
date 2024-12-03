@@ -6,19 +6,21 @@ import CartWidget from '../common/CartWidget'
 const NavBar = () => {
 
     return (
-        <header className="header">
+        
+    <header className="header">
        <Link to="/">Prana</Link> 
-
         <nav className="navbar">
            <a href={"/"}>Home</a>
-           <a href="/">Paletas</a>
-           <a href="/">Bases</a>
-           <a href="/">Labiales</a>
+           <Link to="/category/ojos">Ojos</Link>
+           <Link to="/category/rostro">Rostro</Link>
+           <Link to="/category/labios">Labios</Link>
            <CartWidget />
         </nav>
+
+      
         
     </header>
-    )
-}
+    );
+};
 
 export default NavBar
