@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom"; 
-import { products as allProducts, products } from "../../../../data/products";
 import ItemList from "./ItemList";
 import Cards from "../../common/Cards";
 import { PuffLoader } from "react-spinners";
+import {db} from "../../../firebaseConfig";
+import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 
 const ItemListContainer = () => {
   const [myProducts, setMyProducts] = useState([]);
@@ -12,25 +13,24 @@ const ItemListContainer = () => {
   const { name } = useParams();
 
   useEffect(() => {
-    let productosFiltrados = products.filter((el) => el.category === name);
-
-    let task = new Promise((res) => {
-      setTimeout(() => {
-        res(name ? productosFiltrados : products);
-      }, 2000);
+    const productsCollection = collection(db, "products");
+    let refCollection = productsCollection;
+    if (name) {
+      const productsCollectionFiltered = query(
+        productsCollection,
+        where("category", "==", name)
+      );
+      refCollection = productsCollectionFiltered;
+    }
+    const getProducts = getDocs(refCollection);
+    getProducts.then((res) => {
+      let products = res.docs.map((elemento) => {
+        return { ...elemento.data(), id: elemento.id };
+      }); // []
+      setMyProducts(products);
     });
-    task
-      .then((resp) => {
-        setMyProducts(resp);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        console.log("Finally");
-      });
   }, [name]);
-
+  
   return (
     <div style={{ position: 'relative', minHeight: '100vh' }}>
       {myProducts.length === 0 ? (

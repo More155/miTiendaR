@@ -1,4 +1,6 @@
 import { createContext, useState } from "react";
+import { toast } from "react-toastify";
+import { products } from "../../data/products";
 
 export const CartContext = createContext();
 
@@ -7,6 +9,14 @@ export const CartContextProvider = ({ children }) => {
 
   const addToCart = (product) => {
     setCart([...cart, product]);
+    toast.success(`${product.title} agregado al carrito!`, {
+      position: "bottom-right",   
+      autoClose: 3000,           
+      hideProgressBar: true,     
+      closeOnClick: true,         
+      pauseOnHover: true,         
+      draggable: true,           
+    });
   };
 
   const resetCart = () => {
